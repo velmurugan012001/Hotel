@@ -1,4 +1,5 @@
-using Hotal.Model;
+global using Hotal.Model;
+using HotelAss.Model;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddDbContext<HotalDbContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("OnetoManyCon")));
 //var connectionstring = builder.Configuration.GetConnectionString("OnetoManyCon");
-builder.Services.AddDbContext<HotalDbContext>(optionsAction: options => options.UseSqlServer(builder.Configuration.GetConnectionString(name: "OnetoManyCon")));
+builder.Services.AddDbContext<HotelDbContext>(optionsAction: options => options.UseSqlServer(builder.Configuration.GetConnectionString(name: "OnetoManyCon")));
+//builder.Services.AddScoped<IHotal,ServiesHotal>();
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ReferenceLoopHandling =
